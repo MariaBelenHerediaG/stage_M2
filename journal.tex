@@ -56,16 +56,29 @@ Metamodel constructions steps: dimension reduction and regression. First, funcio
 \textbf{Modeling inputs and outputs:} Description of the methodology to study the relationship between precipitation and the SST. \\
 Let $\tau$ be a finite and closed interval of $\mathbb{R}$. The spatial regions of interest are $R$ and $R'$. Let $x$ be a grid point on $G$. They considered  that the $i$th observed time-dependent trajectory at point $x$ correspond to a sampled longitudinal curve viewed as a realizations of random trajectories $(X_{i}^{x}), i=1,...N$. These $X_{i}^{x}$ were viewed as independent realizations of the stochastic process $X^{x}$ which mean function $E(X^{x})(t)=\mu_{X^{x}}(t)$ is unkown, and covariance function is $cov(X^{x}(s), X^{x}(t))=G_{X}^{x}(s,t)$. Then, there exist a decomposition of $G_{X^{x}}$ in the $\mathbb{L^{2}}$ sense in terms of eigenfunctions $e_{m}(x,.)$ with associeted eigenvalues $\rho_{m}(x)$:
 
-\begin{equation*}
-G_{X^{x}(s,t)}=\sum_{m \geq 1} \pho_{m}(x)e_{m}(x,s)e_{m}(x, t), \qquad s, t \in \tau.
-\end{equation*}
+\begin{equation}
+G_{X^x}(s,t)=\sum_{m \geq 1} \rho_{m}(x)e_{m}(x,s)e_{m}(x, t), \qquad s, t \in \tau. 
+\end{equation}
 
 The random function $X^{x}(t)$ where $t$ denotes time and $x$ location, may be decomposed into orthogonal expansion:
 
-\begin{equation*}
-X^{x}(t)=\mu_{X^{x}}(t)
-\end{equation*}
+\begin{equation}
+X^{x}(t)=\mu_{X^{x}}(t)+\sum_{m=1}^{\infty} \alpha_{m}(x)e_{m}(x,t), t \in \tau.
+\end{equation}
 
+The truncated decomposition with $N_{x}$ terms (keeping at location $x$ the first $N_{x}$ principal components):
+
+\begin{equation}
+X^{x}(t)=\mu_{X^{x}}(t)+\sum_{m=1}^{N_{x}} \alpha_{m}(x)e_{m}(x,t), t \in \tau.
+\end{equation}
+
+
+
+\section{Cosas adicionales}
+\subsection{github}
+\texttt{git add archivo}\\
+\texttt{git commit -m "indicar cualquier comentario"}\\
+\texttt{git push -u origin master}\\
 \bibliographystyle{alpha}
 \bibliography{biblio.bib}
 \end{document}
