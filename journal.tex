@@ -1,0 +1,71 @@
+\documentclass{article}
+
+%Packages R
+\usepackage{url}
+\usepackage{amssymb}
+
+\begin{document}
+
+%13/02/2016
+%Tareas:
+% Leer paper
+% Reunión Clémentine Prieur.
+% Cours WRF.
+% Solicitar Datos a Thomas.
+% Inventario de datos !2011-2015
+% Analizar variable de precipitación a varios niveles de agregación simulacion-observacion in situ.
+% Cómo determinar anios secos y húmedos? Encontrar una tendencia?
+% Leer kriging
+% Revisar scripts de Lise para aplicar kriging.
+We have a WRF simulation of a period of time of four years (3 domains: 27 km (d01), 9 km (d02), 3 km (d03), 1 km (d04)) with the same parametrization as simu1 and the aditional options: MI = 2 (parameter concerning to the microphysics options in WRF), slope\_rand=1 (change in the angle of the sun incidence) and topo\_shading=1 (add shadow effect to a mountain).   
+
+$MI=2$ \cite{Lang1983}:
+\begin{itemize}
+\item 5-class microphysics including graupel\footnote{Graupel is precipitation that forms when supercooled droplets of water are collected and freeze on falling snowflakes obtained from \url{https://en.wikipedia.org/wiki/Graupel}}.
+\item Include ice sedimenation and time-split fall terms.
+\end{itemize}
+
+
+\section{NCL}
+Commands:
+\begin{itemize}
+\item \texttt{ncrcat fichier1.nc fichier2.nc  fichier\_result.nc}: Concatenar dos ficheros.
+\item \texttt{ncrcat *.nc fichier\_result.nc}: Concatenar todos los ficheros de extension nc.
+\end{itemize}
+
+\section{Papers}
+\subsection{Spatio-temporal metamodeling for West African monsoon}
+? Como determinar que el cambio en el albedo es influente para el Monsoon.\\
+? Grid-computing environment. \\
+? Functional principal component approach as a dimensional reduction technique.\\
+? Double penalized regression approach.\\
+? Functional data analysis (FDA) (Introduction: Ramsay and Silverman 2002 and 2005).\\
+In this work the authors propose a new approach for modeling and fitting high-dimensional response regressions models in the setting of complex spatio-temporal dynamics. The study is developped for the influence of the sea surface temperatures in the Gulf of Guinea on precipitation in Saharan and sub-Saharan. West African monsoon a atmospheric phenomeno which causes have not been yet determined in an unequivocal manner but there is a strong evidence which suggests that spatio-temporal changes in the sea surface temperatures in the Gulf od Guinean and changes in the Saharan and sub-Saharan albedo are major factors. The model used for simulating precipitation is MAR. \\
+ 
+\textbf{Global sensitivity} analysis of a model output consists in quantifying the respective importance of input factors over their entire range of values. The problem:  Performing a global sensitivity analysis implies running the model a large number of times. The solution: A way for overcoming this issue is to fit a stochastic
+model, which approximates the MAR by taking into consideration the spatio-temporal dynamic of the underlying physical phenomenon and with the ability to be run in a reasonable time. They focus on the regression of precipitation on sea surface temperatures. \\
+
+The data: 18 years of data 1983 to 2000 of sea surface temperature, and 8 years for precipitation 1983-1990. \\
+$X^{x}:$ Sea surface.\\
+$Y^{y}:$ Precipitation.\\
+
+Metamodel constructions steps: dimension reduction and regression. First, funcional principal component approach is developped over the two variables (precipitation and sea surface temperature) is performed. Then, the Karhunen-Lo\'eve decomposition is then truncated because major part of the variance is explained by only few terms. Second, a functional clustering algorithm is performed on the selected eigenfunctions to reduce the spatial dispersion of the Karhunen-Lo\'eve eigenfunctions. Third, the relationship between the outputs and inputs is modeled on the coefficients of the decomposition through a double penalized regression approach.\\
+
+\textbf{Data description:} SST of 516 points of a spatial grid $G$ located in the Gulf of Guinea, weekly data from May to November. 18 years of observations from 1983 to 2000. Precipitation of 368 points of a spatial grid $G'$, daily data whose mean is computed on 10 consecutive days form March to November from 1983 to 1990.
+
+\textbf{Modeling inputs and outputs:} Description of the methodology to study the relationship between precipitation and the SST. \\
+Let $\tau$ be a finite and closed interval of $\mathbb{R}$. The spatial regions of interest are $R$ and $R'$. Let $x$ be a grid point on $G$. They considered  that the $i$th observed time-dependent trajectory at point $x$ correspond to a sampled longitudinal curve viewed as a realizations of random trajectories $(X_{i}^{x}), i=1,...N$. These $X_{i}^{x}$ were viewed as independent realizations of the stochastic process $X^{x}$ which mean function $E(X^{x})(t)=\mu_{X^{x}}(t)$ is unkown, and covariance function is $cov(X^{x}(s), X^{x}(t))=G_{X}^{x}(s,t)$. Then, there exist a decomposition of $G_{X^{x}}$ in the $\mathbb{L^{2}}$ sense in terms of eigenfunctions $e_{m}(x,.)$ with associeted eigenvalues $\rho_{m}(x)$:
+
+\begin{equation*}
+G_{X^{x}(s,t)}=\sum_{m \geq 1} \pho_{m}(x)e_{m}(x,s)e_{m}(x, t), \qquad s, t \in \tau.
+\end{equation*}
+
+The random function $X^{x}(t)$ where $t$ denotes time and $x$ location, may be decomposed into orthogonal expansion:
+
+\begin{equation*}
+X^{x}(t)=\mu_{X^{x}}(t)
+\end{equation*}
+
+\bibliographystyle{alpha}
+\bibliography{biblio.bib}
+\end{document}
